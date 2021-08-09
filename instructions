@@ -1,0 +1,14 @@
+rethink this!!!!!!!!!!!!!!!!!!!!!!!
+
+i can make 3 arrays that communicate with each other
+
+let leftarray = [leftImages]
+let rightarray = [rightImages]
+let center array = [centerImages]
+
+
+these can each hold differnt pics so they never show the same images  
+
+ iterate through each of the arrays
+
+ want to make a input list to search 
