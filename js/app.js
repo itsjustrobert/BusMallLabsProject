@@ -1,5 +1,17 @@
 //  here is where we will define classes/instanctiate clickable
-// add an even listener
+
+
+
+
+
+
+// get a random picture 
+var mixer = () => { return Math.floor(Math.random())*imagesArray.length}
+
+
+
+
+
 
 // define base set of properties for our object
 
@@ -27,6 +39,12 @@ let imagesArray = [
   new Pictures("helloooo", "./assets/images/music.jpg"),
   new Pictures("hellooo", "./assets/images/BLAKGOLD.jpg"),
   new Pictures("helloo", "./assets/images/basquiat.jpg"),
+  new Pictures("helloo", "./assets/images/health.jpg"),
+  new Pictures("helloo", "assets/images/blue_rhapsody_by_afremov_studio_by_leonidafremov_dej0gda-200h.jpg"),
+  new Pictures("helloo", "./assets/images/images.jpg"),
+  new Pictures("helloo", "./assets/images/bibliophile.jpg"),
+   new Pictures("helloo", "./assets/images/food.jpg"),
+
 ];
 console.log(imagesArray)
 
@@ -64,23 +82,21 @@ function newPick() {
   centerImageText = imagesArray[middleIndex].name;
   centerImage.src = imagesArray[middleIndex].imgSrc;
 
-  // check for duplicates
-//    let duped=true;
-//   if (pageLeft != pageRight){
-
-//       duped = false
-        
-//   }
+//   check for duplicates 
+if(pageLeft === pageMiddle && pageLeft === pageRight &&  pageMiddle === pageRight) {
+    
+    pageRight = mixer(imagesArray)
+    pageLeft = mixer(imagesArray);
+    pageMiddle = mixer(imagesArray);
+    console.log('hello world')
+    }
 
   // keep up with the two randomly pickedi objects
 
 
 
   // to update click and count
- for (let i = 0; i < imagesArray.length; i++) {
- 
-  
-}
+
 
 }  
 
