@@ -1,0 +1,15 @@
+to do { 
+    make the images change when u click them === add event listeners to all image elements and call the new pick function //ck
+    update click
+    fix the conditional to check for duplicates
+    push the data to the chart
+    store the chart's data in local storage={
+        create local storage function === const localStorage () => {
+
+
+        }
+        make array for data
+        push data into the array === array.push(this)
+        
+
+    }
