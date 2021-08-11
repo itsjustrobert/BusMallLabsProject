@@ -1,17 +1,9 @@
-//  here is where we will define classes/instanctiate clickable
+//  here is where we will define classes/instantiate clickable
 
-
-
-
-
-
-// get a random picture 
-var mixer = () => { return Math.floor(Math.random())*imagesArray.length}
-
-
-
-
-
+// get a random picture
+var mixer = () => {
+  return Math.floor(Math.random()) * imagesArray.length;
+};
 
 // define base set of properties for our object
 
@@ -40,13 +32,15 @@ let imagesArray = [
   new Pictures("hellooo", "./assets/images/BLAKGOLD.jpg"),
   new Pictures("helloo", "./assets/images/basquiat.jpg"),
   new Pictures("helloo", "./assets/images/health.jpg"),
-  new Pictures("helloo", "assets/images/blue_rhapsody_by_afremov_studio_by_leonidafremov_dej0gda-200h.jpg"),
+  new Pictures(
+    "helloo",
+    "assets/images/blue_rhapsody_by_afremov_studio_by_leonidafremov_dej0gda-200h.jpg"
+  ),
   new Pictures("helloo", "./assets/images/images.jpg"),
   new Pictures("helloo", "./assets/images/bibliophile.jpg"),
-   new Pictures("helloo", "./assets/images/food.jpg"),
-
+  new Pictures("helloo", "./assets/images/food.jpg"),
 ];
-console.log(imagesArray)
+console.log(imagesArray);
 
 // set up our elements refrences in the dom
 let header = document.getElementById("header");
@@ -58,6 +52,9 @@ let centerImage = document.getElementById("middleImage");
 let rightImageText = document.getElementById("rightImageParagraph");
 let centerImageText = document.getElementById("middleImageParagraph");
 let leftImageText = document.getElementById("leftImageParagraph");
+let start = document.getElementById("startBtn");
+let startText = document.createTextNode("Start");
+start.appendChild(startText);
 // =================================================================
 // implement a function to pic 2 random pictures
 function newPick() {
@@ -82,23 +79,23 @@ function newPick() {
   centerImageText = imagesArray[middleIndex].name;
   centerImage.src = imagesArray[middleIndex].imgSrc;
 
-//   check for duplicates 
-if(pageLeft === pageMiddle && pageLeft === pageRight &&  pageMiddle === pageRight) {
-    
-    pageRight = mixer(imagesArray)
+  //   check for duplicates
+
+if(
+    pageLeft === pageMiddle ||
+    pageLeft === pageRight ||
+    pageMiddle === pageRight
+  ) {
+    pageRight = mixer(imagesArray);
     pageLeft = mixer(imagesArray);
     pageMiddle = mixer(imagesArray);
-    console.log('hello world')
-    }
+    // console.log('hello world')
+  }
 
-  // keep up with the two randomly pickedi objects
-
-
+  // keep up with the two randomly picked objects
 
   // to update click and count
-
-
-}  
+}
 
 function clickOnProduct(evt) {
   console.log(`You clicked on this target element ${evt.target.id}`);
@@ -107,8 +104,7 @@ function clickOnProduct(evt) {
   // check to see which event happened
 }
 
-
-
 // poe
+start.addEventListener("click", newPick);
 section.addEventListener("click", clickOnProduct);
 newPick();
