@@ -137,12 +137,11 @@ function renderChart() {
   });
 }
 
-
 const allPictures = [];
 // get a random picture
 function mixer() {
   return Math.floor(Math.random() * imagesArray);
-};
+}
 
 // define base set of properties for our object
 
@@ -168,17 +167,24 @@ const maxClicksAllowed = 5;
 
 // randomly pull from a list of image objects
 let imagesArray = [
-  new Pictures("helloooo", "./assets/images/music.jpg"),
-  new Pictures("hellooo", "./assets/images/BLAKGOLD.jpg"),
-  new Pictures("helloo", "./assets/images/basquiat.jpg"),
-  new Pictures("helloo", "./assets/images/health.jpg"),
-  new Pictures(
-    "helloo",
-    "assets/images/blue_rhapsody_by_afremov_studio_by_leonidafremov_dej0gda-200h.jpg"
-  ),
-  new Pictures("helloo", "./assets/images/images.jpg"),
-  new Pictures("helloo", "./assets/images/bibliophile.jpg"),
-  new Pictures("helloo", "./assets/images/food.jpg"),
+  new Pictures("bag", "imgs/bag.jpg"),
+  new Pictures("banana", "imgs/banana.jpg"),
+  new Pictures("bathroom", "imgs/bathroom.jpg"),
+  new Pictures("boots", "imgs/boots.jpg"),
+  new Pictures("breakfast", "imgs/breakfast.jpg"),
+  new Pictures("bubblegum", "imgs/bubblegum.jpg"),
+  new Pictures("chair", "imgs/chair.jpg"),
+  new Pictures("dog-duck", "imgs/dog-duck.jpg"),
+  new Pictures("dragon", "imgs/dragon.jpg"),
+  new Pictures("pen", "imgs/pen.jpg"),
+  new Pictures("pet-sweep", "imgs/pet-sweep.jpg"),
+  new Pictures("scissors", "imgs/scissors.jpg"),
+  new Pictures("shark", "imgs/shark.jpg"),
+  new Pictures("sweep", "imgs/sweep.jpg"),
+  new Pictures("tauntaun", "imgs/tauntaun.jpg"),
+  new Pictures("unicorn", "imgs/unicorn.jpg"),
+  new Pictures("water-can", "imgs/water-can.jpg"),
+  new Pictures("wine-glass", "imgs/wine-glass.jpg")
 ];
 console.log(imagesArray);
 console.log(allPictures);
@@ -202,23 +208,23 @@ function newPick() {
 
   let leftIndex = Math.floor(Math.random() * imagesArray.length);
 
-  let middleIndex = Math.floor(Math.random() * imagesArray.length); 
+  let middleIndex = Math.floor(Math.random() * imagesArray.length);
   if (
-      imagesArray[rightIndex] === imagesArray[leftIndex] ||
-      imagesArray[middleIndex] === imagesArray[rightIndex] ||
-      imagesArray[middleIndex] === imagesArray[leftIndex]
-    ) {
-      // logic is correct  
-      console.log("you have a dupe");
+    imagesArray[rightIndex] === imagesArray[leftIndex] ||
+    imagesArray[middleIndex] === imagesArray[rightIndex] ||
+    imagesArray[middleIndex] === imagesArray[leftIndex]
+  ) {
+    
+    // logic is correct
+    console.log("you have a dupe");
+    
 
-      // imagesArray[rightIndex] = mixer();
-      // imagesArray[middleIndex] = mixer();
-      // imagesArray[leftIndex] = mixer();
-
-    } else {
-      console.log('nothing is the same')
-
-    }
+    // imagesArray[rightIndex] = mixer();
+    // imagesArray[middleIndex] = mixer();
+    // imagesArray[leftIndex] = mixer();
+  } else {
+    console.log("nothing is the same");
+  }
 
   //  pick randomly from the list a left img
   leftImageText = imagesArray[leftIndex].name;
@@ -239,11 +245,8 @@ function newPick() {
     rightImage.addEventListener("click", newPick);
     leftImage.addEventListener("click", newPick);
     centerImage.addEventListener("click", newPick);
-
-   
   };
   changePictues();
-    
 
   //   check for duplicates
 
@@ -267,17 +270,15 @@ function clickOnProduct(evt) {
   console.log(`You clicked on this target element ${evt.target.id}`);
   const thingsClicked = evt.target;
   const id = thingsClicked.id;
- 
+
   // check to see which event happened
- 
-};
+}
 // function to show trhe results
-function showResults(){
-  alert('you have reached the max')
+function showResults() {
+  alert("you have reached the max");
 }
 
-
 // poe
-start.addEventListener('click', newPick);
-section.addEventListener('click', clickOnProduct);
+start.addEventListener("click", newPick);
+section.addEventListener("click", clickOnProduct);
 newPick();
