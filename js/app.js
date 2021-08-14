@@ -19,7 +19,7 @@ var finalChart;
 // Constructor
 function ItemImage(name){
   this.name = name;
-  this.filepath = `img/${name}.jpg`;
+  this.filepath = `imgs/${name}.jpg`;
   this.timesShown = 0;
   this.timesSelected = 0;
   imageArray.push(this);
