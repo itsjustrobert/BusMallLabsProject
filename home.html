@@ -1,54 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- sass library -->
-    <link rel="stylesheet" href="./styles/sassLibrary/_core.scss">
-    <!-- stylesheet -->
-    <link rel="stylesheet" href="./styles/style.css">
-    <title>Document</title>
-</head>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
 <body>
-  
-    <header id = 'choose'>
-            choose your pictures
-        </header>
-    <section id="allPics">
-        
-        <div id="left">
-        <img src="" alt="product" id="leftImage">
-        <p id="leftImageParagraph"></p>
-        </div>
+  <main>
+    <h1>Bus Mall</h1>
+    <p>Which of the below would be most likely to purchase?</p>
 
-        <div id="middle">
-            <img src="" alt="product" id="middleImage">
-            <p id="middleImageParagraph"></p>
-            </div>
-    
-<div id="right">
-        <img src="" alt="product" id="rightImage">
-        <p id="rightImageParagraph"></p>
+    <div id="imageBlock">
+      <div id="imageTitle">Click on an image below:</div>
+      <div id="imageContainer">
+        <div id="imageGroupContainer">
+          <img class="imageGroup" id="imageSelectionOne" src="" alt="" title="" />
+          <img class="imageGroup" id="imageSelectionTwo" src="" alt="" title="" />
+          <img class="imageGroup" id="imageSelectionThree" src="" alt="" title="" />
         </div>
-
-    </section>
-    <div id="buttonContainer">
-   <button id="startBtn"></button>
-    </div>
-    <div>
-        <canvas id="myChart"></canvas>
       </div>
-    <aside>
-        <ol id="finalScore">
-            <h3>
-                tally
-            </h3>
-        </ol>
-    </aside>
-      
+    </div>
+  <div id="listOfData"></div>
+  <div id="votingContainer">
+  <canvas id="voting-chart" width="800px" height="400px"></canvas>
+  </div>
+</main>
 </body>
-<!-- javascript -->
-<script src="./js/app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/app.js"></script>
+
 </html>
