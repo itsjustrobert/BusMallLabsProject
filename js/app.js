@@ -1,284 +1,212 @@
-//  here is where we will define classes/instantiate clickable
-// all instances will be stored in this array
+// Global variables
 
-function renderChart() {
-  const ctx = document.getElementById("canvas").getContext("2d");
+var imageSelectionOne = document.getElementById('imageSelectionOne');
+var imageSelectionTwo = document.getElementById('imageSelectionTwo');
+var imageSelectionThree = document.getElementById('imageSelectionThree');
+var listOfData = document.getElementById('listOfData');
 
-  const productVotes = [];
-  const productTitles = [];
-  const productViews = [];
 
-  for (let index = 0; index < allPictures.length; index++) {
-    const product = allPictures[index];
-  }
+var imageArray=[];
+var maxClicks = 10;
+var totalClicks = 0;
+var imageUsed = [1, 2, 3, 4, 5, 6];
+var showingList = false;
+var nameArray = [];
+var voteArray =[];
+var finalChart;
 
-  chart = new Chart(ctx, {
-    type: "horizontalBar",
-    data: {
-      labels: productTitles,
-      datasets: [
-        {
-          label: "# of Votes",
-          data: productVotes,
-          backgroundColor: [
-            "rgba(255, 99, 132, 0.7)",
-            "rgba(54, 162, 235, 0.7)",
-            "rgba(255, 206, 86, 0.7)",
-            "rgba(75, 192, 192, 0.7)",
-            "rgba(153, 102, 255, 0.7)",
-            "rgba(255, 159, 64, 0.7)",
-            "rgba(255, 99, 132, 0.7)",
-            "rgba(54, 162, 235, 0.7)",
-            "rgba(255, 206, 86, 0.7)",
-            "rgba(75, 192, 192, 0.7)",
-            "rgba(153, 102, 255, 0.7)",
-            "rgba(255, 159, 64, 0.7)",
-            "rgba(255, 99, 132, 0.7)",
-            "rgba(54, 162, 235, 0.7)",
-            "rgba(255, 206, 86, 0.7)",
-            "rgba(75, 192, 192, 0.7)",
-            "rgba(153, 102, 255, 0.7)",
-            "rgba(255, 159, 64, 0.7)",
-            "rgba(255, 99, 132, 0.7)",
-            "rgba(54, 162, 235, 0.7)",
-          ],
-          borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-          ],
-          borderWidth: 1,
-        },
-        {
-          label: "# of views",
-          data: productViews,
-          backgroundColor: [
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
-            "rgba(255, 206, 86, 0.2)",
-            "rgba(75, 192, 192, 0.2)",
-            "rgba(153, 102, 255, 0.2)",
-            "rgba(255, 159, 64, 0.2)",
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
-            "rgba(255, 206, 86, 0.2)",
-            "rgba(75, 192, 192, 0.2)",
-            "rgba(153, 102, 255, 0.2)",
-            "rgba(255, 159, 64, 0.2)",
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
-            "rgba(255, 206, 86, 0.2)",
-            "rgba(75, 192, 192, 0.2)",
-            "rgba(153, 102, 255, 0.2)",
-            "rgba(255, 159, 64, 0.2)",
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
-          ],
-          borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-          ],
-          borderWidth: 1,
-        },
-      ],
-    },
+
+// Constructor
+function ItemImage(name){
+  this.name = name;
+  this.filepath = `img/${name}.jpg`;
+  this.timesShown = 0;
+  this.timesSelected = 0;
+  imageArray.push(this);
+  
+}
+
+// New Instances
+new ItemImage('bag');
+new ItemImage('banana');
+new ItemImage('bathroom');
+new ItemImage('boots');
+new ItemImage('breakfast');
+new ItemImage('bubblegum');
+new ItemImage('chair');
+new ItemImage('cthulhu');
+new ItemImage('dog-duck');
+new ItemImage('dragon');
+new ItemImage('pen');
+new ItemImage('pet-sweep');
+new ItemImage('scissors');
+new ItemImage('shark');
+// new ItemImage('sweep');
+new ItemImage('tauntaun');
+new ItemImage('unicorn');
+// new ItemImage('usb');
+new ItemImage('water-can');
+new ItemImage('wine-glass');
+
+// CHART data and fucntion
+
+var data = {
+  labels: nameArray,
+  datasets: [{
+    label: 'Results',
+    data: voteArray,
+    backgroundColor: [
+      'blue',
+      'darkgray',
+      'lightpurple',
+      'lightblue',
+      'navy',
+      'blue',
+      'darkgray',
+      'lightpurple',
+      'lightblue',
+      'navy',
+      'blue',
+      'darkgray',
+      'lightpurple',
+      'lightblue',
+      'navy',
+      'blue',
+      'darkgray',
+      'lightpurple'
+    ],
+    hoverBackgroundColor: [
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple',
+      'purple'
+    ]
+  }]
+};
+
+function drawChart() {
+  var ctx = document.getElementById('voting-chart').getContext('2d');
+  finalChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
     options: {
-      legend: {
-        display: false,
-      },
-      scales: {
-        xAxes: [
-          {
-            ticks: {
-              stepSize: 1,
-            },
-            gridLines: {
-              display: false,
-            },
-          },
-        ],
-      },
+      responsive: false,
+      animation: {
+        duration: 2000,
+        easing: 'easeOutElastic'
+      }
     },
+    scales: {
+      yAxes: [{
+        ticks: {
+          max: 10,
+          min: 0,
+          stepSize: 1.0
+        }
+      }]
+    }
   });
+
+  imageSelectionOne.removeEventListener('click', handleImageSelection);
+  imageSelectionTwo.removeEventListener('click', handleImageSelection);
+  imageSelectionThree.removeEventListener('click', handleImageSelection);
 }
 
-const allPictures = [];
-// get a random picture
-function mixer() {
-  return Math.floor(Math.random() * imagesArray);
-}
-
-// define base set of properties for our object
-
-class Pictures {
-  // properties that I want but not pass in
-  click = 0;
-  diplayed = 0;
-  // =========================================
-  constructor(name, imgSrc) {
-    this.name = name;
-    this.imgSrc = imgSrc;
-    allPictures.push(this);
-  }
-}
-
-// storage
-let pageLeft = null;
-let pageMiddle = null;
-let pageRight = null;
-// rules
-let totalClicks = 0;
-const maxClicksAllowed = 5;
-
-// randomly pull from a list of image objects
-let imagesArray = [
-  new Pictures("bag", "imgs/bag.jpg"),
-  new Pictures("banana", "imgs/banana.jpg"),
-  new Pictures("bathroom", "imgs/bathroom.jpg"),
-  new Pictures("boots", "imgs/boots.jpg"),
-  new Pictures("breakfast", "imgs/breakfast.jpg"),
-  new Pictures("bubblegum", "imgs/bubblegum.jpg"),
-  new Pictures("chair", "imgs/chair.jpg"),
-  new Pictures("dog-duck", "imgs/dog-duck.jpg"),
-  new Pictures("dragon", "imgs/dragon.jpg"),
-  new Pictures("pen", "imgs/pen.jpg"),
-  new Pictures("pet-sweep", "imgs/pet-sweep.jpg"),
-  new Pictures("scissors", "imgs/scissors.jpg"),
-  new Pictures("shark", "imgs/shark.jpg"),
-  new Pictures("sweep", "imgs/sweep.jpg"),
-  new Pictures("tauntaun", "imgs/tauntaun.jpg"),
-  new Pictures("unicorn", "imgs/unicorn.jpg"),
-  new Pictures("water-can", "imgs/water-can.jpg"),
-  new Pictures("wine-glass", "imgs/wine-glass.jpg")
-];
-console.log(imagesArray);
-console.log(allPictures);
-// set up our elements refrences in the dom
-let header = document.getElementById("header");
-let section = document.getElementById("allPics");
-let finalScore = document.getElementById("finalScore");
-let rightImage = document.getElementById("rightImage");
-let leftImage = document.getElementById("leftImage");
-let centerImage = document.getElementById("middleImage");
-let rightImageText = document.getElementById("rightImageParagraph");
-let centerImageText = document.getElementById("middleImageParagraph");
-let leftImageText = document.getElementById("leftImageParagraph");
-let start = document.getElementById("startBtn");
-let startText = document.createTextNode("Start");
-start.appendChild(startText);
-// =================================================================
-// implement a function to pic 3 random pictures
-function newPick() {
-  let rightIndex = Math.floor(Math.random() * imagesArray.length);
-
-  let leftIndex = Math.floor(Math.random() * imagesArray.length);
-
-  let middleIndex = Math.floor(Math.random() * imagesArray.length);
-  if (
-    imagesArray[rightIndex] === imagesArray[leftIndex] ||
-    imagesArray[middleIndex] === imagesArray[rightIndex] ||
-    imagesArray[middleIndex] === imagesArray[leftIndex]
-  ) {
-    
-    // logic is correct
-    console.log("you have a dupe");
-    
-
-    // imagesArray[rightIndex] = mixer();
-    // imagesArray[middleIndex] = mixer();
-    // imagesArray[leftIndex] = mixer();
+// Checking to see if there is local storage
+function checkLocalStorage(){
+  if (localStorage.imageArrayStorage) {
+    var retrievedImageArrayStorage = localStorage.getItem('imageArrayStorage');
+    var parsedImageArrayStorage = JSON.parse(retrievedImageArrayStorage);
+    imageArray = parsedImageArrayStorage;
+    showRandomImage(imageSelectionOne);
+    showRandomImage(imageSelectionTwo);
+    showRandomImage(imageSelectionThree);
   } else {
-    console.log("nothing is the same");
+    showRandomImage(imageSelectionOne);
+    showRandomImage(imageSelectionTwo);
+    showRandomImage(imageSelectionThree);
+  }
+}
+
+// Creating local storage
+function createLocalStorage(){
+  var stringifiedImageArray = JSON.stringify(imageArray);
+  localStorage.setItem('imageArrayStorage', stringifiedImageArray);
+}
+
+
+// Displays images
+function showRandomImage(socketEl){
+  // generate a random number 0-7
+  var randomIndex = Math.floor(Math.random() * imageArray.length);
+  while (imageUsed.includes(randomIndex)){
+    randomIndex = Math.floor(Math.random() * imageArray.length);
+  }
+  // assign src
+  socketEl.src = imageArray[randomIndex].filepath;
+  // assign title
+  socketEl.title = imageArray[randomIndex].name;
+  // assign the alt
+  socketEl.alt = imageArray[randomIndex].name;
+  // increment times shown
+  imageArray[randomIndex].timesShown++;
+  // Replaces items in used image array
+  imageUsed.shift();
+  imageUsed.push(randomIndex);
+}
+
+function chartData(){
+  for (var i=0; i<imageArray.length; i++){
+    nameArray.push(imageArray[i].name);
+    voteArray.push(imageArray[i].timesSelected);
+  }
+}
+
+
+// Event handler
+function handleImageSelection(event){
+  console.log(event.target.alt);
+  totalClicks++;
+
+  for (var i=0; i < imageArray.length; i++) {
+    if(event.target.alt === imageArray[i].name) {
+      imageArray[i].timesSelected++;
+    }
   }
 
-  //  pick randomly from the list a left img
-  leftImageText = imagesArray[leftIndex].name;
-  leftImage.src = imagesArray[leftIndex].imgSrc;
-  pageLeft = imagesArray[leftIndex];
-
-  //  pick randomly from the list a right img
-  rightImageText = imagesArray[rightIndex].name;
-  rightImage.src = imagesArray[rightIndex].imgSrc;
-  pageRight = imagesArray[rightIndex];
-
-  //  pick randomly from the list a middle img
-  pageMiddle = imagesArray[middleIndex];
-  centerImageText = imagesArray[middleIndex].name;
-  centerImage.src = imagesArray[middleIndex].imgSrc;
-  // change pictues
-  const changePictues = () => {
-    rightImage.addEventListener("click", newPick);
-    leftImage.addEventListener("click", newPick);
-    centerImage.addEventListener("click", newPick);
-  };
-  changePictues();
-
-  //   check for duplicates
-
-  // if(
-  //     pageLeft === pageMiddle ||
-  //     pageLeft === pageRight ||
-  //     pageMiddle === pageRight
-  //   ) {
-  //     pageRight = mixer(imagesArray);
-  //     pageLeft = mixer(imagesArray);
-  //     pageMiddle = mixer(imagesArray);
-  //     // console.log('hello world')
-  //   }
-
-  // keep up with the two randomly picked objects
-
-  // to update click and count
+  if (totalClicks < maxClicks) {
+    showRandomImage(imageSelectionOne);
+    showRandomImage(imageSelectionTwo);
+    showRandomImage(imageSelectionThree);
+  } else {
+    chartData();
+    drawChart();
+    createLocalStorage();
+  }
 }
 
-function clickOnProduct(evt) {
-  console.log(`You clicked on this target element ${evt.target.id}`);
-  const thingsClicked = evt.target;
-  const id = thingsClicked.id;
+// Event listener
+imageSelectionOne.addEventListener('click', handleImageSelection);
+imageSelectionTwo.addEventListener('click', handleImageSelection);
+imageSelectionThree.addEventListener('click', handleImageSelection);
 
-  // check to see which event happened
-}
-// function to show trhe results
-function showResults() {
-  alert("you have reached the max");
-}
 
-// poe
-start.addEventListener("click", newPick);
-section.addEventListener("click", clickOnProduct);
-newPick();
+// Function Calls
+// showRandomImage(imageSelectionOne);
+// showRandomImage(imageSelectionTwo);
+// showRandomImage(imageSelectionThree);
+checkLocalStorage();
